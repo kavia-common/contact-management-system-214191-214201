@@ -1,49 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import ContactsList from "./pages/ContactsList";
 
 // PUBLIC_INTERFACE
 function App() {
-  const [theme, setTheme] = useState('light');
+  /** Root app shell: header + main content. */
+  const [theme, setTheme] = useState("light");
 
-  // Effect to apply theme to document element
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
   // PUBLIC_INTERFACE
   const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+    /** Toggle between light and dark themes. */
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
   return (
     <div className="App">
-      <header className="App-header">
-        <button 
-          className="theme-toggle" 
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-        >
-          {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
-        </button>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          Current theme: <strong>{theme}</strong>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="appHeader">
+        <div className="headerInner">
+          <div className="brand">
+            <h1 className="title">Contact Manager</h1>
+            <p className="subtitle">Search, sort, and browse your contacts</p>
+          </div>
+
+          <button
+            className="themeToggle"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+            type="button"
+          >
+            {theme === "light" ? "Dark mode" : "Light mode"}
+          </button>
+        </div>
       </header>
+
+      <main className="main">
+        <ContactsList />
+      </main>
     </div>
   );
 }
 
 export default App;
+

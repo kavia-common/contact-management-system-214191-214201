@@ -1,104 +1,101 @@
-/* CSS Variables for Theme Management */
+/* Theme variables (retro-light with blue/cyan accents) */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --bg: #f9fafb;
+  --surface: #ffffff;
+  --text: #111827;
+  --muted: #64748b;
+
+  --primary: #3b82f6;
+  --accent: #06b6d4;
+  --danger: #ef4444;
+
+  --border: rgba(17, 24, 39, 0.12);
+  --shadow: 0 16px 40px rgba(17, 24, 39, 0.08);
 }
 
+/* Keep dark mode toggle supported, but the task targets light theme */
 [data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+  --bg: #0b1220;
+  --surface: #0f172a;
+  --text: #f8fafc;
+  --muted: rgba(248, 250, 252, 0.7);
+
+  --primary: #60a5fa;
+  --accent: #22d3ee;
+
+  --border: rgba(248, 250, 252, 0.16);
+  --shadow: 0 18px 46px rgba(0, 0, 0, 0.5);
 }
 
 .App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background: radial-gradient(900px 400px at 20% 0%, rgba(59, 130, 246, 0.16), transparent 60%),
+    radial-gradient(900px 400px at 80% 0%, rgba(6, 182, 212, 0.14), transparent 60%),
+    var(--bg);
+  color: var(--text);
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.appHeader {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(17, 24, 39, 0.08);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+[data-theme="dark"] .appHeader {
+  background: rgba(15, 23, 42, 0.72);
 }
 
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+.headerInner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 16px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  justify-content: space-between;
+  gap: 12px;
 }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+.brand {
+  display: grid;
+  gap: 2px;
+  text-align: left;
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
+.title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 950;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.themeToggle {
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.16), rgba(6, 182, 212, 0.12));
+  border: 1px solid rgba(59, 130, 246, 0.28);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 900;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.08);
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+.themeToggle:hover {
+  border-color: rgba(6, 182, 212, 0.7);
+  box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.14);
 }
 
-.theme-toggle:active {
-  transform: translateY(0);
+.main {
+  padding-top: 8px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
-  }
-}
